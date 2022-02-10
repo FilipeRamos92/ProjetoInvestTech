@@ -46,6 +46,6 @@ class AssetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def asset_params
-      params.require(:asset).permit(:name, :price, :type, :isin)
+      params.require(:asset).permit(:asset_name, :asset_price, :asset_type, :ticker)
     end
 end

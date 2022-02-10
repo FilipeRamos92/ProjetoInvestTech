@@ -46,6 +46,6 @@ class CashTransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cash_transaction_params
-      params.require(:cash_transaction).permit(:date, :description, :value, :fund_id)
+      params.require(:cash_transaction).permit(:date, :description, :cash_value, :fund_id)
     end
 end
