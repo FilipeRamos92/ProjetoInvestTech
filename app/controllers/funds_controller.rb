@@ -46,6 +46,6 @@ class FundsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fund_params
-      params.require(:fund).permit(:name, :creation_date)
+      params.require(:fund).permit(:name, :cnpj, :creation_date)
     end
 end

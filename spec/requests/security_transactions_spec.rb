@@ -12,9 +12,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/asset_transactions", type: :request do
+RSpec.describe "/security_transactions", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # AssetTransaction. As you add validations to AssetTransaction, be sure to
+  # SecurityTransaction. As you add validations to SecurityTransaction, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -26,7 +26,7 @@ RSpec.describe "/asset_transactions", type: :request do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # AssetTransactionsController, or in your router and rack
+  # SecurityTransactionsController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
     {}
@@ -34,48 +34,48 @@ RSpec.describe "/asset_transactions", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      AssetTransaction.create! valid_attributes
-      get asset_transactions_url, headers: valid_headers, as: :json
+      SecurityTransaction.create! valid_attributes
+      get security_transactions_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      asset_transaction = AssetTransaction.create! valid_attributes
-      get asset_transaction_url(asset_transaction), as: :json
+      security_transaction = SecurityTransaction.create! valid_attributes
+      get security_transaction_url(security_transaction), as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new AssetTransaction" do
+      it "creates a new SecurityTransaction" do
         expect {
-          post asset_transactions_url,
-               params: { asset_transaction: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(AssetTransaction, :count).by(1)
+          post security_transactions_url,
+               params: { security_transaction: valid_attributes }, headers: valid_headers, as: :json
+        }.to change(SecurityTransaction, :count).by(1)
       end
 
-      it "renders a JSON response with the new asset_transaction" do
-        post asset_transactions_url,
-             params: { asset_transaction: valid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the new security_transaction" do
+        post security_transactions_url,
+             params: { security_transaction: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new AssetTransaction" do
+      it "does not create a new SecurityTransaction" do
         expect {
-          post asset_transactions_url,
-               params: { asset_transaction: invalid_attributes }, as: :json
-        }.to change(AssetTransaction, :count).by(0)
+          post security_transactions_url,
+               params: { security_transaction: invalid_attributes }, as: :json
+        }.to change(SecurityTransaction, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new asset_transaction" do
-        post asset_transactions_url,
-             params: { asset_transaction: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the new security_transaction" do
+        post security_transactions_url,
+             params: { security_transaction: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -88,28 +88,28 @@ RSpec.describe "/asset_transactions", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested asset_transaction" do
-        asset_transaction = AssetTransaction.create! valid_attributes
-        patch asset_transaction_url(asset_transaction),
-              params: { asset_transaction: new_attributes }, headers: valid_headers, as: :json
-        asset_transaction.reload
+      it "updates the requested security_transaction" do
+        security_transaction = SecurityTransaction.create! valid_attributes
+        patch security_transaction_url(security_transaction),
+              params: { security_transaction: new_attributes }, headers: valid_headers, as: :json
+        security_transaction.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the asset_transaction" do
-        asset_transaction = AssetTransaction.create! valid_attributes
-        patch asset_transaction_url(asset_transaction),
-              params: { asset_transaction: new_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the security_transaction" do
+        security_transaction = SecurityTransaction.create! valid_attributes
+        patch security_transaction_url(security_transaction),
+              params: { security_transaction: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the asset_transaction" do
-        asset_transaction = AssetTransaction.create! valid_attributes
-        patch asset_transaction_url(asset_transaction),
-              params: { asset_transaction: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the security_transaction" do
+        security_transaction = SecurityTransaction.create! valid_attributes
+        patch security_transaction_url(security_transaction),
+              params: { security_transaction: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -117,11 +117,11 @@ RSpec.describe "/asset_transactions", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested asset_transaction" do
-      asset_transaction = AssetTransaction.create! valid_attributes
+    it "destroys the requested security_transaction" do
+      security_transaction = SecurityTransaction.create! valid_attributes
       expect {
-        delete asset_transaction_url(asset_transaction), headers: valid_headers, as: :json
-      }.to change(AssetTransaction, :count).by(-1)
+        delete security_transaction_url(security_transaction), headers: valid_headers, as: :json
+      }.to change(SecurityTransaction, :count).by(-1)
     end
   end
 end

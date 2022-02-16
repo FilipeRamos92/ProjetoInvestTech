@@ -12,9 +12,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/assets", type: :request do
+RSpec.describe "/securities", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # Asset. As you add validations to Asset, be sure to
+  # Security. As you add validations to Security, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -26,7 +26,7 @@ RSpec.describe "/assets", type: :request do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # AssetsController, or in your router and rack
+  # SecuritiesController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
     {}
@@ -34,48 +34,48 @@ RSpec.describe "/assets", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Asset.create! valid_attributes
-      get assets_url, headers: valid_headers, as: :json
+      Security.create! valid_attributes
+      get securities_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      asset = Asset.create! valid_attributes
-      get asset_url(asset), as: :json
+      security = Security.create! valid_attributes
+      get security_url(security), as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Asset" do
+      it "creates a new Security" do
         expect {
-          post assets_url,
-               params: { asset: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(Asset, :count).by(1)
+          post securities_url,
+               params: { security: valid_attributes }, headers: valid_headers, as: :json
+        }.to change(Security, :count).by(1)
       end
 
-      it "renders a JSON response with the new asset" do
-        post assets_url,
-             params: { asset: valid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the new security" do
+        post securities_url,
+             params: { security: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Asset" do
+      it "does not create a new Security" do
         expect {
-          post assets_url,
-               params: { asset: invalid_attributes }, as: :json
-        }.to change(Asset, :count).by(0)
+          post securities_url,
+               params: { security: invalid_attributes }, as: :json
+        }.to change(Security, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new asset" do
-        post assets_url,
-             params: { asset: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the new security" do
+        post securities_url,
+             params: { security: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -88,28 +88,28 @@ RSpec.describe "/assets", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested asset" do
-        asset = Asset.create! valid_attributes
-        patch asset_url(asset),
-              params: { asset: new_attributes }, headers: valid_headers, as: :json
-        asset.reload
+      it "updates the requested security" do
+        security = Security.create! valid_attributes
+        patch security_url(security),
+              params: { security: new_attributes }, headers: valid_headers, as: :json
+        security.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the asset" do
-        asset = Asset.create! valid_attributes
-        patch asset_url(asset),
-              params: { asset: new_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the security" do
+        security = Security.create! valid_attributes
+        patch security_url(security),
+              params: { security: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the asset" do
-        asset = Asset.create! valid_attributes
-        patch asset_url(asset),
-              params: { asset: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the security" do
+        security = Security.create! valid_attributes
+        patch security_url(security),
+              params: { security: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -117,11 +117,11 @@ RSpec.describe "/assets", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested asset" do
-      asset = Asset.create! valid_attributes
+    it "destroys the requested security" do
+      security = Security.create! valid_attributes
       expect {
-        delete asset_url(asset), headers: valid_headers, as: :json
-      }.to change(Asset, :count).by(-1)
+        delete security_url(security), headers: valid_headers, as: :json
+      }.to change(Security, :count).by(-1)
     end
   end
 end

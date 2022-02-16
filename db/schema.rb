@@ -10,32 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_06_215314) do
+ActiveRecord::Schema.define(version: 2022_02_16_125133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "asset_transactions", force: :cascade do |t|
-    t.date "date"
-    t.string "name"
-    t.float "value"
-    t.float "quantity"
-    t.bigint "asset_id", null: false
-    t.bigint "fund_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["asset_id"], name: "index_asset_transactions_on_asset_id"
-    t.index ["fund_id"], name: "index_asset_transactions_on_fund_id"
-  end
-
-  create_table "assets", force: :cascade do |t|
-    t.string "name"
-    t.float "price"
-    t.string "type"
-    t.string "isin"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "cash_transactions", force: :cascade do |t|
     t.date "date"
@@ -49,12 +27,36 @@ ActiveRecord::Schema.define(version: 2022_02_06_215314) do
 
   create_table "funds", force: :cascade do |t|
     t.string "name"
+    t.string "cnpj"
     t.date "creation_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "asset_transactions", "assets"
-  add_foreign_key "asset_transactions", "funds"
+  create_table "securities", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.string "type"
+    t.string "isin"
+    t.string "symbol"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "security_transactions", force: :cascade do |t|
+    t.date "date"
+    t.string "name"
+    t.float "value"
+    t.integer "quantity"
+    t.bigint "security_id", null: false
+    t.bigint "fund_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fund_id"], name: "index_security_transactions_on_fund_id"
+    t.index ["security_id"], name: "index_security_transactions_on_security_id"
+  end
+
   add_foreign_key "cash_transactions", "funds"
+  add_foreign_key "security_transactions", "funds"
+  add_foreign_key "security_transactions", "securities"
 end
