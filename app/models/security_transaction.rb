@@ -12,14 +12,14 @@ class SecurityTransaction < ApplicationRecord
     .includes(:security)
   end
 
-  def as_json(_option) 
-    super({
-      only: [:quantity], 
-      include: {
-        security: {
-          only: [:id, :name, :symbol]
-        }
-      }
-    }) 
-  end
+  # def as_json(_option) 
+  #   super({
+  #     only: [:quantity], 
+  #     include: {
+  #       security: {
+  #         only: [:id, :symbol, :price]
+  #       }
+  #     }
+  #   }) 
+  # end
 end

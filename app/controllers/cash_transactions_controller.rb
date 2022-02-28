@@ -10,10 +10,10 @@ class CashTransactionsController < ApplicationController
 
   # GET /cash_transactions/1
   def show
-    render json: CashTransaction.calc_cash(params[:id])
+    render json: @cash_transactions
   end 
 
-  ###### /cash_transactions/id/date
+  ###### GET /cash_transactions/id/date
   def filter_date
     render json: CashTransaction.calc_cash(params[:id], Date.parse(params[:date]))
   end
