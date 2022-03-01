@@ -10,7 +10,7 @@ class CashTransactionsController < ApplicationController
 
   # GET /cash_transactions/1
   def show
-    render json: @cash_transactions
+    render json: @cash_transaction
   end 
 
   ###### GET /cash_transactions/id/date
