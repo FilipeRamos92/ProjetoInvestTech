@@ -3,7 +3,7 @@ class FundsController < ApplicationController
 
   # GET /funds
   def index
-    @funds = Fund.all
+    @funds = Fund.all.order("creation_date")
 
     render json: @funds
   end

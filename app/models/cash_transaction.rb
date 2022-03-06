@@ -5,6 +5,7 @@ class CashTransaction < ApplicationRecord
     all.select("id, date, description, fund_id, value")
     .where(fund_id: fund_id)
     .where("date <= ?", date)
+    .order("date")
   end
 
 end
