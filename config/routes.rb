@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :funds
 
   get "/portfolios/:id/:date", to: "portfolios#index"
+  get "/security_transactions_with_security_name/:id/:date", to: "security_transactions#show_with_security_name"
 
   get "/cash_transactions/:id/:date", to: "cash_transactions#filter_date" 
 

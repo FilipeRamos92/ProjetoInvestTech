@@ -13,6 +13,15 @@ class SecurityTransactionsController < ApplicationController
     render json: @security_transaction
   end
 
+  def show_with_security_name
+    render json: SecurityTransaction.transactions_with_security_name(params[:id], Date.parse(params[:date]))
+    .as_json(only: [:id, :date, :description, :quantity, :value, :security_id, :fund_id], include: {
+        security: {
+            only: [:id, :symbol, :price]
+        }
+    })
+end
+
   # POST /security_transactions
   def create
     @security_transaction = SecurityTransaction.new(security_transaction_params)
