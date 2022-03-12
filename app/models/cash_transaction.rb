@@ -7,5 +7,10 @@ class CashTransaction < ApplicationRecord
     .where("date <= ?", date)
     .order("date")
   end
+  def self.transactions_with_funds()
+    all.select("id, date, description, fund_id, value")
+    .order("date")
+    .includes(:fund)
+  end
 
 end

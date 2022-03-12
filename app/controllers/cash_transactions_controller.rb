@@ -18,6 +18,13 @@ class CashTransactionsController < ApplicationController
     render json: CashTransaction.calc_cash(params[:id], Date.parse(params[:date]))
   end
 
+  def transactions_with_funds
+    render json: CashTransaction.transactions_with_funds()
+    .as_json(
+      include: :fund)
+  end
+
+
   # POST /cash_transactions
   def create
     @cash_transaction = CashTransaction.new(cash_transaction_params)

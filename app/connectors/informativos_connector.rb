@@ -8,6 +8,6 @@ class InformativosConnector
     end
 
     def self.prices(types=[])
-        get('/prices/2022-03-03', query: {security_types: types})
+        get('/prices/2022-03-02', query: {security_types: types})
     end
 end

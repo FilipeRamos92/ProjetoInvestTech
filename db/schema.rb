@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_125133) do
+ActiveRecord::Schema.define(version: 2022_03_11_232210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 2022_02_16_125133) do
     t.index ["fund_id"], name: "index_cash_transactions_on_fund_id"
   end
 
+  create_table "close_prices", force: :cascade do |t|
+    t.date "date"
+    t.float "price"
+    t.integer "security_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "funds", force: :cascade do |t|
     t.string "name"
     t.string "cnpj"
@@ -33,10 +41,19 @@ ActiveRecord::Schema.define(version: 2022_02_16_125133) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "quotations", force: :cascade do |t|
+    t.date "date"
+    t.float "price"
+    t.bigint "security_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["security_id"], name: "index_quotations_on_security_id"
+  end
+
   create_table "securities", force: :cascade do |t|
     t.string "name"
     t.float "price"
-    t.string "type"
+    t.string "security_type"
     t.string "isin"
     t.string "symbol"
     t.datetime "created_at", precision: 6, null: false
@@ -45,7 +62,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_125133) do
 
   create_table "security_transactions", force: :cascade do |t|
     t.date "date"
-    t.string "name"
+    t.string "description"
     t.float "value"
     t.integer "quantity"
     t.bigint "security_id", null: false
@@ -57,6 +74,8 @@ ActiveRecord::Schema.define(version: 2022_02_16_125133) do
   end
 
   add_foreign_key "cash_transactions", "funds"
+  add_foreign_key "close_prices", "securities"
+  add_foreign_key "quotations", "securities"
   add_foreign_key "security_transactions", "funds"
   add_foreign_key "security_transactions", "securities"
 end

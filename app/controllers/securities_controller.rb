@@ -13,6 +13,10 @@ class SecuritiesController < ApplicationController
     render json: @security
   end
 
+  def filter_securities
+    render json: Security.filter_security()
+  end
+
   # POST /securities
   def create
     @security = Security.new(security_params)
